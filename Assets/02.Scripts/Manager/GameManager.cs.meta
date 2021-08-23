@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0d82428eafacf754e89a826bbf415532
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_GameOver: {instanceID: 0}
+  - m_GameTime: {instanceID: 0}
+  - m_AudioSource: {instanceID: 0}
+  - m_StartGameSound: {fileID: 8300000, guid: e1c391c3200ee514895716c8a7204ce2, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
