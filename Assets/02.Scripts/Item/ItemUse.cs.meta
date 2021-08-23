@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b03577d0015091d4f89ade07ac8c0173
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_Heal: {fileID: 165310, guid: 4cdcc6c16809ba5439c8798d9bb925f4, type: 3}
+  - m_Ammo: {fileID: 183502, guid: 4656138d9606a80408030bdc231b1233, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

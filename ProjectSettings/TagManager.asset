@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Grounds
   - Enemy
+  - Item_Bullet
+  - Fire
+  - Item_Health
+  - EnemyATK
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -13,7 +18,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
