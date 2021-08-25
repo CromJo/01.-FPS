@@ -4,27 +4,42 @@ using UnityEngine;
 
 public class ItemSpawn : MonoBehaviour
 {
-    ItemHealth m_ItemHealth;
-    [SerializeField] float m_RespawnItem;
+    //ItemUse m_ItemUse;
+    GameObject[] m_Item2;                               //배열로 만들고
+    List<ItemUse> m_ItemUse2;
+
+    [SerializeField] float[] m_RespawnItem;
     [SerializeField] float m_CreateItem = 15f;
     // Start is called before the first frame update
     void Start()
     {
-        m_ItemHealth = GameObject.FindGameObjectWithTag("Item").GetComponent<ItemHealth>();
+        m_ItemUse2 = new List<ItemUse>();
+        m_Item2 = GameObject.FindGameObjectsWithTag("Item");            //Item태그가 들어간 모든 게임오브젝트들을 넣어주고.
+        //Debug.Log(m_Item2.Length);
+        for(int i = 0;  i < m_Item2.Length; ++i)
+        {
+            m_ItemUse2.Add(m_Item2[i].GetComponent<ItemUse>());
+        }
+
+        //m_ItemUse = GameObject.FindWithTag("Item").GetComponent<ItemUse>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(m_ItemHealth.transform.gameObject.activeSelf == false)          //ItemHealth스크립트를 가진 개체가 비활성화 되어있을 경우
+        for (int i = 0; i < m_Item2.Length; i++)
         {
-            m_RespawnItem += Time.deltaTime;
-        }
-        
-        if(m_RespawnItem >= m_CreateItem)
-        {
-            m_RespawnItem = 0f;
-            m_ItemHealth.transform.gameObject.SetActive(true);
+            if (m_ItemUse2[i].transform.gameObject.activeSelf == false)          //ItemUse스크립트를 가진 개체가 비활성화 되어있을 경우
+            {
+                m_RespawnItem[i] += Time.deltaTime;                              //시간 증가
+            }
+
+            if (m_RespawnItem[i] >= m_CreateItem)                                //만약 특정 시간을 도달 했을 경우
+            {
+                m_RespawnItem[i] = 0f;                                           //시간을 초기화
+                m_ItemUse2[i].transform.gameObject.SetActive(true);              //비활성화된 아이템을 활성화
+                m_ItemUse2[i].transform.SetParent(this.transform);               //부모의 몸속으로 자리이동
+            }
         }
     }
 }

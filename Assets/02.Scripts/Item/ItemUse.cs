@@ -7,9 +7,7 @@ public class ItemUse : MonoBehaviour
     [SerializeField] GameObject m_Heal;
     [SerializeField] GameObject m_Ammo;
     [SerializeField] Transform[] m_ItemSpawnTransform;
-    ItemUse m_ItemUse;
-    //float m_RespawnTime;            //
-    float m_RespawnRate = 15f;            //재생성시간
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,18 +17,19 @@ public class ItemUse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
-
-    private void OnTriggerEnter(Collider other)                 //부딫쳤다면
+    public void Heal()
     {
-        if(other.gameObject.tag == "Player")                    //만약에 플레이어라는 태그가 붙은거랑
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
         {
 
             ObjectPool.ReturnObject(this);
         }
-
-        if(ObjectPool.ReturnObject(m_ItemUse.m_Ammo.GetComponent<ItemUse>().))
     }
 }
