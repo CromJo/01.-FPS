@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class ItemSpawn : MonoBehaviour
 {
-    ItemUse m_ItemUse;
+    ItemHealth m_ItemHealth;
     [SerializeField] float m_RespawnItem;
     [SerializeField] float m_CreateItem = 15f;
     // Start is called before the first frame update
     void Start()
     {
-        m_ItemUse = GameObject.FindWithTag("Item").GetComponent<ItemUse>();
+        m_ItemHealth = GameObject.FindGameObjectWithTag("Item").GetComponent<ItemHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(m_ItemUse.transform.gameObject.activeSelf == false)          //ItemUse스크립트를 가진 개체가 비활성화 되어있을 경우
+        if(m_ItemHealth.transform.gameObject.activeSelf == false)          //ItemHealth스크립트를 가진 개체가 비활성화 되어있을 경우
         {
             m_RespawnItem += Time.deltaTime;
         }
@@ -24,7 +24,7 @@ public class ItemSpawn : MonoBehaviour
         if(m_RespawnItem >= m_CreateItem)
         {
             m_RespawnItem = 0f;
-            m_ItemUse.transform.gameObject.SetActive(true);
+            m_ItemHealth.transform.gameObject.SetActive(true);
         }
     }
 }

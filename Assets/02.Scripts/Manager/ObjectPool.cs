@@ -53,7 +53,7 @@ public class ObjectPool : MonoBehaviour
     public static void ReturnObject(ItemUse obj)
     {
         obj.gameObject.SetActive(false);                    //다시 비활성화
-        //obj.transform.SetParent(Instance.transform);        //제자리로 위치변경
+        //obj.transform.SetParent(Instance.transform);      //제자리로 위치변경
         Instance.m_PoolingObjectQueue.Enqueue(obj);         //큐배열에 다시 집어넣음
     }
 
