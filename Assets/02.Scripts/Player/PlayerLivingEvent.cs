@@ -44,7 +44,7 @@ public class PlayerLivingEvent : LivingEvent
             Dead();
 		}
 
-        OnDamage(1);
+        //if(m_Enemy)
     }
 
 
@@ -81,11 +81,13 @@ public class PlayerLivingEvent : LivingEvent
 
     private void OnTriggerEnter(Collider other)
     {
-       if(other.tag == "EnemyATK")
+       if(other.tag == "Enemy")
         {
             Enemy enemyDamage = other.GetComponent<Enemy>();
+            enemyDamage.Damage = 10;
             m_LiveHP -= enemyDamage.Damage;
             StartCoroutine(OnDMG());
+            UIManager.u_Instance.UpdateHPText(m_LiveHP);
             UIManager.u_Instance.PlayerHitImage(m_BloodImage);
         }
     }

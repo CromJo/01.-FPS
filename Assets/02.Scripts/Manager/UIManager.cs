@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
     {
         //m_ReStart.onClick.AddListener(ReStart);
         m_Timer = m_Sec;
-        m_PlayerLivingEvent = GetComponent<PlayerLivingEvent>();
+        m_PlayerLivingEvent = GameObject.FindWithTag("Player").GetComponent<PlayerLivingEvent>();
     }
 
     private void Update()

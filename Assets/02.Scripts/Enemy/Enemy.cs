@@ -30,8 +30,10 @@ public class Enemy : LivingEvent
     bool isAttack;
     [SerializeField] float m_AttackDistance = 3f;           //공격 사거리
     BoxCollider m_MeleeArea;
+    //피격
+    int m_Hit;
     public int Damage { get { return m_Damage; } set { m_Damage = value; } }
-
+    public int Hit { get { return m_Hit; } set { m_Hit = value; } }
     //[SerializeField] int m_StartHP;
     //int m_LiveHP;
 
@@ -93,7 +95,7 @@ public class Enemy : LivingEvent
         m_EnemyAudioSource = GetComponent<AudioSource>();
         m_TargetTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
         OnEnable();
-        m_MeleeArea = GameObject.Find("ATK").GetComponent<BoxCollider>();
+        m_MeleeArea = GameObject.FindWithTag("Enemy").GetComponent<BoxCollider>();
         //m_EnemyRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
 

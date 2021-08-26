@@ -50,7 +50,7 @@ public class Weapons : MonoBehaviour
     [SerializeField] Transform m_AKM;
 
     //공격력
-    [SerializeField] float m_AKMDamage;
+    [SerializeField] int m_AKMDamage = 37;
 
     bool m_isReload =false;                     //장전 중인 상태인지
     public bool isReLoading {get { return m_isReload; } set { m_isReload = value; } }
@@ -166,9 +166,11 @@ public class Weapons : MonoBehaviour
             GameObject BulletHole = Instantiate(m_BulletHole, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
             Destroy(BulletHole, 10f);              //총알구멍을 10초 후 삭제
         }
-        else if (Physics.Raycast(m_ShotPoint.position, m_ShotPoint.transform.forward, out hit, m_Range, m_EnemyLayerMask))
+        if (Physics.Raycast(m_ShotPoint.position, m_ShotPoint.transform.forward, out hit, m_Range, m_EnemyLayerMask))
         {
             Debug.Log("좀비가 맞았다!");
+            Enemy enemy = GameObject.FindWithTag("Enemy").GetComponent<Enemy>();
+            enemy.Hit = m_AKMDamage;
         }
         m_CurrentAmmo--;    //쏠 때마다 하나씩 제거
         m_FireTimer = 0.0f;   //
