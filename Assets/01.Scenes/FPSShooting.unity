@@ -9434,7 +9434,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &813631138
 BoxCollider:
@@ -28684,6 +28684,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1373230638}
     m_Modifications:
+    - target: {fileID: 4090855705151568561, guid: 336a6b690f522c34e9b311c306365108, type: 3}
+      propertyPath: kind
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090855705151568561, guid: 336a6b690f522c34e9b311c306365108, type: 3}
+      propertyPath: m_Kind
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4090855705151568562, guid: 336a6b690f522c34e9b311c306365108, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -28756,6 +28764,10 @@ PrefabInstance:
     - target: {fileID: 4978902736142616464, guid: 93ae89655f3b1e9458a4debd2703a6c9, type: 3}
       propertyPath: m_TagString
       value: Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978902736142616470, guid: 93ae89655f3b1e9458a4debd2703a6c9, type: 3}
+      propertyPath: m_Kind
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4978902736142616471, guid: 93ae89655f3b1e9458a4debd2703a6c9, type: 3}
       propertyPath: m_RootOrder
