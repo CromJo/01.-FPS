@@ -34,6 +34,9 @@ public class UIManager : MonoBehaviour
     float m_Sec = 0;
     float m_Min = 3;
     float m_Timer;
+
+    float m_BloodTime = 1.5f;
+    float m_BloodHealthTime;
     private void Start()
     {
         //m_ReStart.onClick.AddListener(ReStart);
@@ -43,7 +46,13 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        
+
+        //m_BloodHealthTime = Time.deltaTime;
+        //if (m_BloodHealthTime <= m_BloodTime)
+        //{
+        //    PlayerHitImage(m_PlayerHit);
+        //}
+
     }
 
     public void UpdateAmmoText(int ammo, int remainammo)
@@ -113,7 +122,10 @@ public class UIManager : MonoBehaviour
     public void  PlayerHitImage(Image blood)
     {
         Color color = m_PlayerHit.GetComponent<Image>().color;
-        color.a += 0.1f;
+
+        //color.a += 0.1f;
+        color.a += (float)m_PlayerLivingEvent.m_StartHP / 2000;
         m_PlayerHit.GetComponent<Image>().color = color;
+
     }
 }

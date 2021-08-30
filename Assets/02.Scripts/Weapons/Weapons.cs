@@ -11,7 +11,9 @@ public class Weapons : MonoBehaviour
     [SerializeField] string m_WeaponName;
     [SerializeField] int m_BulletAmmo;               //장전될 아모
     [SerializeField] int m_BulletAmmoPack = 90;      //가지고있는 총 아모
+    public int BulletAmmoPack { get { return m_BulletAmmoPack; } set{ m_BulletAmmoPack = value; } }
     [SerializeField] int m_CurrentAmmo = 30;         //장전된 아모의 현재 갯수
+    public int CurrentAmmo { get { return m_CurrentAmmo; } set{ m_CurrentAmmo = value; } }
     [SerializeField] float m_Range;
     [SerializeField] float m_FireRate;
     [SerializeField] Transform m_BulletObjectPoint;     //위치지정

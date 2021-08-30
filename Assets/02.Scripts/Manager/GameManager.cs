@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
     {
         ReStart();
         UIManager.u_Instance.UpdateTimeText();
-        
     }
 
     public void ReStart()

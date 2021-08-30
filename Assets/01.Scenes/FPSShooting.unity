@@ -3205,7 +3205,7 @@ GameObject:
   - component: {fileID: 285055643}
   m_Layer: 0
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28111,6 +28111,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoSpawner2
       objectReference: {fileID: 0}
+    - target: {fileID: 183674315336154176, guid: 2b8b7522f6347d8418a1390fea7f7292, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     - target: {fileID: 183674315336154177, guid: 2b8b7522f6347d8418a1390fea7f7292, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -28728,6 +28732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthSpawner2
       objectReference: {fileID: 0}
+    - target: {fileID: 4090855705151568563, guid: 336a6b690f522c34e9b311c306365108, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 336a6b690f522c34e9b311c306365108, type: 3}
 --- !u!1001 &4978902735749699067
@@ -28744,6 +28752,10 @@ PrefabInstance:
     - target: {fileID: 4978902736142616464, guid: 93ae89655f3b1e9458a4debd2703a6c9, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978902736142616464, guid: 93ae89655f3b1e9458a4debd2703a6c9, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     - target: {fileID: 4978902736142616471, guid: 93ae89655f3b1e9458a4debd2703a6c9, type: 3}
       propertyPath: m_RootOrder
@@ -28863,6 +28875,14 @@ PrefabInstance:
     - target: {fileID: 8363863269361752696, guid: 4e7261fb92a87024c83426b6589f5738, type: 3}
       propertyPath: m_Name
       value: AmmoSpawner1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363863269361752696, guid: 4e7261fb92a87024c83426b6589f5738, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363863269361752696, guid: 4e7261fb92a87024c83426b6589f5738, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     - target: {fileID: 8363863269361752697, guid: 4e7261fb92a87024c83426b6589f5738, type: 3}
       propertyPath: m_RootOrder

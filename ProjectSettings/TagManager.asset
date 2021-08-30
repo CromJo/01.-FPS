@@ -11,6 +11,7 @@ TagManager:
   - Item_Health
   - EnemyATK
   - Item
+  - UI
   layers:
   - Default
   - TransparentFX
