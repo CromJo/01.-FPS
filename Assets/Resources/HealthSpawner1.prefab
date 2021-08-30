@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Ammo: {fileID: 183502, guid: 4656138d9606a80408030bdc231b1233, type: 3}
   m_ItemSpawnTransform:
   - {fileID: 4978902736142616471}
+  kind: 1
 --- !u!54 &4978902736142616469
 Rigidbody:
   m_ObjectHideFlags: 0

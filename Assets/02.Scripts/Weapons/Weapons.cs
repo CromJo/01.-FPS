@@ -120,10 +120,8 @@ public class Weapons : MonoBehaviour
                             ReloadSound();
                         }
                     }
-
                 }
             }
-			
 		}
         //else if (Input.GetKeyUp(KeyCode.R))
         //{
