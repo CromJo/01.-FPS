@@ -24,7 +24,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    //첫시작후 비활성화 해주는 함수
+    //첫시작후 활성화 해주는 함수
     private ItemUse CreateNewObject()
     {
         var newObj = Instantiate(m_PoolingObjectPrefabs).GetComponent<ItemUse>(); //자료형에 맞게 생성

@@ -45,7 +45,7 @@ public class PlayerMove : MonoBehaviour
         m_VelocityY += m_Gravity * Time.deltaTime;              //벨로시티에 중력값을 넣고
         dir.y = m_VelocityY;                                    //벨로시티를 플레이어.y값에 넣어서 중력 적용.
 
-        transform.position += dir * m_MoveSpeed * Time.deltaTime;
+        //transform.position += dir * m_MoveSpeed * Time.deltaTime;
 
         m_CC.Move(dir * m_MoveSpeed * Time.deltaTime);
 	}

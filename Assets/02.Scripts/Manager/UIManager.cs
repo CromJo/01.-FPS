@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
         m_GameOver.SetActive(active);
         m_Player.GetComponent<Weapons>().enabled = false;
         m_Player.GetComponent<PlayerMove>().enabled = false;
-        m_Player.GetComponent<MouseManager>().enabled = false;
+        GetComponent<MouseManager>().enabled = false;
         //m_Player.active = false;
 
         ReStart();
