@@ -6,19 +6,19 @@ public class ItemSpawn : MonoBehaviour
 {
     //ItemUse m_ItemUse;
     GameObject[] m_Item2;                               //배열로 만들고
-    List<ItemUse> m_ItemUse2;
+    List<ItemUse> m_ItemUse2;                           //리스트형식의 아이템 스크립트를 선언
 
     [SerializeField] float[] m_RespawnItem;
     [SerializeField] float m_CreateItem = 15f;
     // Start is called before the first frame update
     void Start()
     {
-        m_ItemUse2 = new List<ItemUse>();
+        m_ItemUse2 = new List<ItemUse>();                               //동적할당 해주고
         m_Item2 = GameObject.FindGameObjectsWithTag("Item");            //Item태그가 들어간 모든 게임오브젝트들을 넣어주고.
         //Debug.Log(m_Item2.Length);
-        for(int i = 0;  i < m_Item2.Length; ++i)
+        for(int i = 0;  i < m_Item2.Length; ++i)                        //게임오브젝트의 갯수만큼 돌려서
         {
-            m_ItemUse2.Add(m_Item2[i].GetComponent<ItemUse>());
+            m_ItemUse2.Add(m_Item2[i].GetComponent<ItemUse>());         //리스트에 추가해준다.
         }
 
         //m_ItemUse = GameObject.FindWithTag("Item").GetComponent<ItemUse>();

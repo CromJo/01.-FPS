@@ -170,8 +170,10 @@ public class Weapons : MonoBehaviour
         {
             Debug.Log("좀비가 맞았다!");
             Enemy enemy = GameObject.FindWithTag("Enemy").GetComponent<Enemy>();
-            enemy.Hit = m_AKMDamage;
-        }
+            //enemy.Hit -= m_AKMDamage;
+            //enemy.m_LiveHP -= m_AKMDamage;
+            enemy.OnDamage(m_AKMDamage);
+         }
         m_CurrentAmmo--;    //쏠 때마다 하나씩 제거
         m_FireTimer = 0.0f;   //
         m_AudioSource.PlayOneShot(m_ShotSound);       //총 사운드출력
@@ -191,7 +193,10 @@ public class Weapons : MonoBehaviour
 
     //반동 함수
     void ReCoil()
-    {       
+    {
+        if (Input.GetButton("Fire2"))
+            return;
+
         Vector3 recoilVector = new Vector3(Random.Range(-m_RecoilReturn.x, m_RecoilReturn.x), m_RecoilReturn.y, m_RecoilReturn.z);//상하좌우에 대한 반동 값 지정
         Vector3 recoilCamVector = new Vector3(-recoilVector.y * 300f, recoilVector.x * 200f, 0);                                //상하좌우에 대한 반동 작동
     
@@ -210,16 +215,16 @@ public class Weapons : MonoBehaviour
     {
         if (Input.GetButton("Fire2") && !isReLoading)
         {
-            m_AKM.localPosition = Vector3.Lerp(m_AKM.localPosition, m_AimPosition, Time.deltaTime * 8f);
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 40f, Time.deltaTime * 8f);
-            isAiming = true;
+            m_AKM.localPosition = Vector3.Lerp(m_AKM.localPosition, m_AimPosition, Time.deltaTime * 8f);            //무기 줌인 포지션값으로 변경
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 40f, Time.deltaTime * 8f);                //카메라 확대
+            isAiming = true;                                                                                        //줌상태 변경
             //m_Accuracy = origin
         }
         else
         {
-            m_AKM.localPosition = Vector3.Lerp(m_AKM.localPosition, m_RecoilReturn, Time.deltaTime * 5f);
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60f, Time.deltaTime * 8f);
-            isAiming = false;
+            m_AKM.localPosition = Vector3.Lerp(m_AKM.localPosition, m_RecoilReturn, Time.deltaTime * 5f);           //무기 기본포지션값으로 변경
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60f, Time.deltaTime * 8f);                //카메라 확대
+            isAiming = false;                                                                                       //줌상태 변경
         }
     }
 

@@ -5392,7 +5392,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StartHP: 100
   m_LiveHP: 0
-  m_BloodImage: {fileID: 0}
   m_GameOverUI: {fileID: 782104204}
 --- !u!23 &509004467
 MeshRenderer:
@@ -5504,7 +5503,7 @@ MonoBehaviour:
   m_LayerMask: 0
   m_EnemyLayerMask: 0
   m_AKM: {fileID: 919132148975797171}
-  m_AKMDamage: 0
+  m_AKMDamage: 37
 --- !u!1001 &513584292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28296,7 +28295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1750944911966893937, guid: e08b8dd47a21d3e4aae23f32ebba6f55, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1888676107851395040, guid: e08b8dd47a21d3e4aae23f32ebba6f55, type: 3}
       propertyPath: m_Layer

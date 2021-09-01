@@ -26,13 +26,13 @@ public class Enemy : LivingEvent
     [SerializeField] Animator m_Animator;
 
     //공격
-    [SerializeField] int m_Damage = 10;
+    [SerializeField] int m_Atk = 10;
     bool isAttack;
     [SerializeField] float m_AttackDistance = 3f;           //공격 사거리
     BoxCollider m_MeleeArea;
     //피격
     int m_Hit;
-    public int Damage { get { return m_Damage; } set { m_Damage = value; } }
+    public int Atk { get { return m_Atk; } set { m_Atk = value; } }
     public int Hit { get { return m_Hit; } set { m_Hit = value; } }
     //[SerializeField] int m_StartHP;
     //int m_LiveHP;
@@ -109,7 +109,7 @@ public class Enemy : LivingEvent
     //{
     //    m_StartHP = newhp;          //시작 HP
     //    LiveHP = newhp;             //현재 HP
-    //    m_Damage = newdamage;       //현재 공격력
+    //    m_Atk = newdamage;       //현재 공격력
     //    m_PathFinder.speed = newspeed;  //현재 이동속도
     //
     //}
@@ -170,12 +170,18 @@ public class Enemy : LivingEvent
     
     public override void OnDamage(int damage)
     {
-        base.OnDamage(50);
+        m_LiveHP -= damage;           //매개변수로 들어온 값만큼 내 HP를 깎아준다.
+
+        if (m_LiveHP <= 0 && !isDead)  //0보다 낮은데 죽지 않은 상태라면
+        {
+            Dead();                 //데드 함수 실행
+        }
     }
 
     public override void Dead()
     {
         base.Dead();
+        ChangeState(State.BodyShotDead);
     }
     private void OnTriggerStay(Collider other)
     {
@@ -184,26 +190,26 @@ public class Enemy : LivingEvent
 
     public void ChangeState(State state)
     {
-        if (m_State == state || isDead)        //현재 상태와 같은 상태가 들어온다면
-            return;                 //함수종료
+        if (m_State == state || isDead)                                 //현재 상태와 같은 상태가 들어온다면
+            return;                                                     //함수종료
 
-        m_State = state;
-        m_Animator.SetInteger(m_AnimeHashKeyState, (int)m_State);
+        m_State = state;                                                //잘 들어와졌으면 매개변수로 받은 값으로 바꿔주고
+        m_Animator.SetInteger(m_AnimeHashKeyState, (int)m_State);       //애니메이터 파라미터 값을 정수형으로 변환해주고
 
-        switch (m_State)
+        switch (m_State)                                                //상태들 중에서
         {
-            case State.Idle:
+            case State.Idle:                                            //대기상태일 경우
                 Debug.Log("상태: 아이들");
                 m_PathFinder.Stop();
                 break;
-            case State.Run:
+            case State.Run:                                             //추격상태일 경우
                 Debug.Log("상태: 뛰어가기");
-                m_PathFinder.destination = m_TargetTransform.position;
+                m_PathFinder.destination = m_TargetTransform.position;  //타겟위치 확인
                 m_PathFinder.Resume();
                 break;
-            case State.Fire:
+            case State.Fire:                                            //공격 상태일 경우
                 Debug.Log("상태: 공격");
-                StartCoroutine(Attack());
+                StartCoroutine(Attack());                               //코루틴 함수 실행
                 break;
             case State.HeadShotDead:
                 
@@ -222,12 +228,15 @@ public class Enemy : LivingEvent
     IEnumerator Attack()
     {
         isAttack = true;
+        PlayerLivingEvent player = GameObject.FindWithTag("Player").GetComponent<PlayerLivingEvent>();
         yield return new WaitForSeconds(0.2f);
         Debug.Log("플레이어를 공격했다");
-        m_MeleeArea.enabled = true;
+        player.m_LiveHP -= m_Atk;
+        player.StartCoroutine(player.OnDMG());
+        UIManager.u_Instance.UpdateHPText(player.m_LiveHP);
+        UIManager.u_Instance.PlayerHitImage();
         yield return new WaitForSeconds(1f);
-        m_MeleeArea.enabled = false;
-
+        //m_MeleeArea.enabled = false;
         isAttack = false;
     }
 }

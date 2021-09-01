@@ -119,7 +119,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void  PlayerHitImage(Image blood)
+    public void  PlayerHitImage()
     {
         Color color = m_PlayerHit.GetComponent<Image>().color;
 

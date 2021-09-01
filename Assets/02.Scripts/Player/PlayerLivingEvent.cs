@@ -7,10 +7,11 @@ public class PlayerLivingEvent : LivingEvent
     //[SerializeField] int m_StartHP = 100;
     //[SerializeField] int m_LiveHP;
     //[SerializeField] int 
-    [SerializeField] Image m_BloodImage;
+    Image m_BloodImage;
     Enemy m_Enemy;
 
     bool isHit;
+    public bool isHited { get { return isHit; } set { isHit = value; } }
     bool isDead;
     public bool isDeaded { get { return isDead; } set { isDead = value; } }
     [SerializeField] GameObject m_GameOverUI;
@@ -55,7 +56,7 @@ public class PlayerLivingEvent : LivingEvent
 
         m_LiveHP -= damage;
         UIManager.u_Instance.UpdateHPText(m_LiveHP);
-        UIManager.u_Instance.PlayerHitImage(m_BloodImage);
+        UIManager.u_Instance.PlayerHitImage();
 
 
         
@@ -83,16 +84,14 @@ public class PlayerLivingEvent : LivingEvent
     {
        if(other.tag == "Enemy")
         {
-            Enemy enemyDamage = other.GetComponent<Enemy>();
-            enemyDamage.Damage = 10;
-            m_LiveHP -= enemyDamage.Damage;
-            StartCoroutine(OnDMG());
-            UIManager.u_Instance.UpdateHPText(m_LiveHP);
-            UIManager.u_Instance.PlayerHitImage(m_BloodImage);
+            //Enemy enemyDamage = other.GetComponent<Enemy>();
+            //enemyDamage.Atk = 10;
+            //m_LiveHP -= enemyDamage.Atk;
+            //StartCoroutine(OnDMG());
         }
     }
 
-    IEnumerator OnDMG()
+    public IEnumerator OnDMG()
     {
         isHit = true;
         yield return new WaitForSeconds(1f);
