@@ -12,7 +12,6 @@ public class ObjectPool : MonoBehaviour
     private void Awake()    
     {
         Instance = this;        //인스탄스는 자신
-
         Initialize(2);          //2개 초기화 및 생성
     }
 
@@ -20,7 +19,7 @@ public class ObjectPool : MonoBehaviour
     {
         for(int i=0; i<initCount; i++)          //매개변수 값만큼 실행
         {
-            //m_PoolingObjectQueue.Enqueue(CreateNewObject());        //큐에 오브젝트를 넣어준다.
+            m_PoolingObjectQueue.Enqueue(CreateNewObject());        //큐에 오브젝트를 넣어준다.
         }
     }
 
