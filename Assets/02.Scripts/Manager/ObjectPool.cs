@@ -12,7 +12,7 @@ public class ObjectPool : MonoBehaviour
     private void Awake()    
     {
         Instance = this;        //인스탄스는 자신
-        Initialize(2);          //2개 초기화 및 생성
+        //Initialize(2);          //2개 초기화 및 생성
     }
 
     private void Initialize(int initCount)      //

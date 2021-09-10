@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 public class Weapons : MonoBehaviour
 {
 
@@ -17,6 +18,7 @@ public class Weapons : MonoBehaviour
     [SerializeField] float m_Range;
     [SerializeField] float m_FireRate;
     [SerializeField] Transform m_BulletObjectPoint;     //위치지정
+    public Transform BulletObjectPoint { get { return m_BulletObjectPoint; } set { m_BulletObjectPoint = value; } }
     [SerializeField] GameObject m_BulletObject;         //불릿객체 생성
 
     //총의 공격속도
@@ -57,6 +59,7 @@ public class Weapons : MonoBehaviour
     bool m_isReload =false;                     //장전 중인 상태인지
     public bool isReLoading {get { return m_isReload; } set { m_isReload = value; } }
 
+    GameObject objCasing;
     public enum State
     {
         Idle = 0,
@@ -232,10 +235,23 @@ public class Weapons : MonoBehaviour
     void BulletSpawn()
     {
         Quaternion randomQuaternion = new Quaternion(Random.Range(0, 360f), Random.Range(0, 360f), Random.Range(0, 360f), 1);                       //탄이 튀는 값 
-        GameObject casing = Instantiate(m_BulletObject, m_BulletObjectPoint);                                                                       //탄생성
-        casing.transform.localRotation = randomQuaternion;                                                                                          //탄이 튈때
-        casing.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(Random.Range(50f, 100f), Random.Range(50f, 100f), Random.Range(-30f, 30f)));  //오른쪽 상단으로 튄다.
-        Destroy(casing, 1f);                                                                                                                            //1초뒤 게임오브젝트 삭제
+        objCasing = CasingObjectPooling.GetObject();
+        //GameObject casing = Instantiate(m_BulletObject, m_BulletObjectPoint);                                                                       //탄생성
+        objCasing.transform.localRotation = randomQuaternion;                                                                                          //탄이 튈때
+        objCasing.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(Random.Range(50f, 100f), Random.Range(50f, 100f), Random.Range(-30f, 30f)));  //오른쪽 상단으로 튄다.
+        //Destroy(casing, 1f);                                                                                                                            //1초뒤 게임오브젝트 삭제
+        //Invoke("DestroyCasing", 1f);
+        StartCoroutine(DestoryCasingObject(objCasing));
+	}
+    IEnumerator DestoryCasingObject(GameObject obj)
+    {
+        yield return new WaitForSeconds(1f);
+        CasingObjectPooling.ReturnObject(obj);
+    }
+    void DestroyCasing()
+    {
+        Debug.Log("아 응애");
+        CasingObjectPooling.ReturnObject(objCasing);
 	}
     void ReloadSound()
     {
@@ -315,4 +331,6 @@ public class Weapons : MonoBehaviour
     {
         return m_State == state;            //현재상태로 만들어줌
 	}
+
+    
 }
