@@ -42,7 +42,7 @@ public class CasingObjectPooling : MonoBehaviour
     {
         GameObject casing = Instantiate(m_Casing, m_CasingPos); //자료형에 맞게 생성
         casing.gameObject.SetActive(false);             //우선 비활성화
-        casing.transform.SetParent(transform);          //
+        //casing.transform.SetParent(transform);          //
         return casing;
     }
 

@@ -34,6 +34,7 @@ public class Enemy : LivingEvent
     int m_Hit;
     public int Atk { get { return m_Atk; } set { m_Atk = value; } }
     public int Hit { get { return m_Hit; } set { m_Hit = value; } }
+
     //[SerializeField] int m_StartHP;
     //int m_LiveHP;
 
@@ -49,7 +50,7 @@ public class Enemy : LivingEvent
 
             
             //타겟이 있고, 타겟이 죽은 상태가 아니라면
-            if (m_TargetEntity != null && !m_TargetEntity.isDead)
+            if (m_TargetEntity != null && !m_TargetEntity.isDead && !isDead)
             {   //공격사거리안에 들어오면
                 if (distance <= m_AttackDistance)
                 {
@@ -129,11 +130,8 @@ public class Enemy : LivingEvent
     private IEnumerator UpdatePath()
     {
         //죽을때까지 무한루프
-        while(!isDead)
+        while(!this.isDead)
         {
-
-            
-
             if (hasTarget)       //타겟이 죽지않고 살아있는 상태라면 실행
             {
                 //ChangeState(State.Run);
@@ -150,7 +148,7 @@ public class Enemy : LivingEvent
                 //ChangeState(State.Idle);
                 m_PathFinder.isStopped = true;      //추적 중단
                 Collider[] PathFinderColliders = Physics.OverlapSphere(transform.position, 200f, m_Target); //내 반경(스크립트를 받는 객체)에서 200범위 안에있는 m_Target을 알아냄
-            
+                Debug.Log("PathFinderColliders.Length : " + PathFinderColliders.Length);
                 for(int i = 0; i<PathFinderColliders.Length; i++)       //패스파인더 배열길이(생성된 수만큼) 반복문이 실행
                 {
                     LivingEvent livingEntity = PathFinderColliders[i].GetComponent<LivingEvent>(); //컴포넌트 가지고 오기
@@ -180,8 +178,8 @@ public class Enemy : LivingEvent
 
     public override void Dead()
     {
-        base.Dead();
         ChangeState(State.BodyShotDead);
+        base.Dead();
     }
     private void OnTriggerStay(Collider other)
     {
@@ -212,8 +210,8 @@ public class Enemy : LivingEvent
                 StartCoroutine(Attack());                               //코루틴 함수 실행
                 break;
             case State.HeadShotDead:
-                
                 break;
+            
             case State.BodyShotDead:
                 break;
         }
@@ -238,5 +236,6 @@ public class Enemy : LivingEvent
         yield return new WaitForSeconds(1f);
         //m_MeleeArea.enabled = false;
         isAttack = false;
+        ChangeState(State.Idle);
     }
 }
