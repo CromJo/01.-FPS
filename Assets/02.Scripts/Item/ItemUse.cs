@@ -46,6 +46,7 @@ public class ItemUse : MonoBehaviour
                     UIManager.u_Instance.UpdateHPText(m_PlayerHealth.m_LiveHP);                         //화면 출력 업데이트해주고
                 }
                 UIManager.u_Instance.UpdateHPText(m_PlayerHealth.m_LiveHP);                             //100안넘어가면 회복한만큼 화면출력 업데이트해주고
+                UIManager.u_Instance.PlayerHealthImage(400);
                 ObjectPool.ReturnObject(this);                                                          //획득한 상자 비활성화
             }
             /*for(int i = 1; i < 3; i++)

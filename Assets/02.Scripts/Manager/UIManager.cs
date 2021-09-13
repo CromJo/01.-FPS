@@ -126,6 +126,19 @@ public class UIManager : MonoBehaviour
         //color.a += 0.1f;
         color.a += (float)m_PlayerLivingEvent.m_StartHP / 2000;
         m_PlayerHit.GetComponent<Image>().color = color;
+    }
 
+    public void PlayerHealthImage(int health)
+    {
+        Color color = m_PlayerHit.GetComponent<Image>().color;
+
+        //color.a += 0.1f;
+        color.a -= ((float)m_PlayerLivingEvent.m_StartHP / health) / 2;
+
+        if(color.a <= 0)                    //알파값 최소치 설정
+        {
+            color.a = 0;    
+		} 
+        m_PlayerHit.GetComponent<Image>().color = color;
     }
 }

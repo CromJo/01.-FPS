@@ -68,9 +68,9 @@ public class CasingObjectPooling : MonoBehaviour
     
     public static void ReturnObject(GameObject obj)
     {
-        obj.gameObject.SetActive(false);                   //활성화
-        //obj.gameObject.transform.position = 
-        Instance.m_Casings.Enqueue(obj);                   //큐배열에 다시 집어넣음
+        obj.gameObject.SetActive(false);                            //활성화
+        obj.transform.position = Instance.m_CasingPos.position;     //기존 좌표로 초기화    
+        Instance.m_Casings.Enqueue(obj);                            //큐배열에 다시 집어넣음
         
         //if (obj.)
         //{
